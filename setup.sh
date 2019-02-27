@@ -1,0 +1,1 @@
+docker load < ./tmsiusb.tar
