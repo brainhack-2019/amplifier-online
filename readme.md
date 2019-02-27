@@ -27,6 +27,12 @@ Under `./src/` one will find `app.py`, where the function `app()` lives. The fun
 
 The dev enviroment is set to use a dummy amplifier, which provides some basic functions like sin etc.
 
+Available Functions:
+* Sine
+* Cosine
+* Random
+* Modulo
+
 
 
 
