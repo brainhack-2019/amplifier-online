@@ -14,13 +14,13 @@ after having docker installed pull the base image
 `docker pull registry.gitlab.com/pierzchlewicz/tmsi-usb-docker`
 
 ## UNIX-likes
-running `./setup.sh`
-building `./start.sh`
+* running `./setup.sh`
+* building `./start.sh`
 
 ## Windows
 ##### UNTESTED
-running `setup.bat`
-building `start.bat`
+* running `setup.bat`
+* building `start.bat`
 
 ## Development
 Under `./src/` one will find `app.py`, where the function `app()` lives. The function is an interface to the amplifier, allowing to work with the samples gathered.
