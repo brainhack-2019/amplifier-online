@@ -9,6 +9,10 @@ Installed Docker
 * Windows: https://docs.docker.com/docker-for-windows/install/
 * Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
+after having docker installed pull the base image
+
+`docker pull registry.gitlab.com/pierzchlewicz/tmsi-usb-docker`
+
 ## UNIX-likes
 running `./setup.sh`
 building `./start.sh`
