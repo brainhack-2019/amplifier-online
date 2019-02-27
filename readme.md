@@ -1,5 +1,4 @@
 # TMSI development enviroment
----
 A docker based enviroment for developing applications for online signal analysis for the tMSI amplifier.
 
 ## Prerequisite
