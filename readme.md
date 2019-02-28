@@ -1,16 +1,15 @@
 # TMSI development enviroment
 A docker based enviroment for developing applications for online signal analysis for the tMSI amplifier.
 
-## Prerequisite
+## Prerequisites
 Installed Docker
 
 * OS X: https://docs.docker.com/docker-for-mac/install/
 * Windows: https://docs.docker.com/docker-for-windows/install/
 * Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-after having docker installed pull the base image
-
-`docker pull registry.gitlab.com/pierzchlewicz/tmsi-usb-docker`
+## Installation
+`git clone https://github.com/brainhack-2019/amplifier-online.git`
 
 ## UNIX-likes
 * running `./setup.sh`
