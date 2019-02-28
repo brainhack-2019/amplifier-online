@@ -26,3 +26,4 @@ while True:
     packet = amp.get_samples(int(config['DEFAULT']['buffer_length']))
     samples = samples_to_microvolts(packet.samples)
     app(samples)
+

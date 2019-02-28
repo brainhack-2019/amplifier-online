@@ -1,3 +1,4 @@
+
 def app(samples):
 	'''
 	samples - a buffer stream from the gathered channels.
@@ -5,3 +6,4 @@ def app(samples):
 	The analysis of the signal should, be handled through here.
 	'''
 	print(samples)
+
