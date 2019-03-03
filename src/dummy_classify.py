@@ -45,7 +45,7 @@ def outer_classify(in_data, prev_data, sig_noMean):
 
 
     # Classify
-        class_out = int(predict.predict(fitted_model, in_data)) + 1
+        class_out = int(predict.predict(fitted_model, sig_noMean)) + 1
 
         # classification output...
         # Make random output  !!! !!! !!! 
