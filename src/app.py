@@ -29,7 +29,7 @@ def app(samples, prev_data):
     sig[-buffer_length:] = samples[:]
 
     prev_data, class_out = outer_classify(sig, prev_data)
-    
-    requests.post(f"http://{client_ip}:5000/", data=json.dumps({'gesture_id': class_out))
+    if class_out != 0:
+        requests.post(f"http://{client_ip}:5000/", data=json.dumps({'gesture_id': class_out}))
     
     return prev_data
