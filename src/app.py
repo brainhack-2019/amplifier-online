@@ -1,5 +1,8 @@
 import configparser as cp
 import numpy as np
+import requests
+import json
+import random
 
 config = cp.ConfigParser()
 config.read('config.ini')
@@ -8,6 +11,7 @@ sampling_rate = int(config['DEFAULT']['sampling_rate'])
 classifier_length = int(config['DEFAULT']['classifier_length'])
 buffer_length = int(config['DEFAULT']['buffer_length'])
 channels = int(config['DEFAULT']['channels'])
+client_ip = str(config['DEFAULT']['client_ip'])
 
 sig = np.zeros((classifier_length * sampling_rate, channels))
 
@@ -22,6 +26,7 @@ def app(samples):
     sig[buffer_length:] = sig[:-buffer_length]
     sig[-buffer_length:] = samples[:]
 
-    # print(sig.shape)
+    gesture_id = random
 
-    # print(len(sample))
+    requests.post(f"http://{client_ip}:5000/", data=json.dumps({'gesture_id': gesture_id}))
+
