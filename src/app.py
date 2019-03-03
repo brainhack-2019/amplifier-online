@@ -2,7 +2,6 @@ import configparser as cp
 import numpy as np
 import requests
 import json
-import random
 from dummy_classify import outer_classify
 
 
@@ -28,8 +27,19 @@ def app(samples, prev_data):
     sig[buffer_length:] = sig[:-buffer_length]
     sig[-buffer_length:] = samples[:]
 
-    prev_data, class_out = outer_classify(sig, prev_data)
+
+    ###
+    sig_noMean = sig[:]
+
+    for i in range(channels):
+        mean_chan = sig[:,i].mean()
+        sig_noMean[:,i] -= mean_chan
+
+
+    ###
+
+    prev_data, class_out = outer_classify(sig, prev_data, sig_noMean)
     if class_out != 0:
-        requests.post(f"http://{client_ip}:5000/", data=json.dumps({'gesture_id': class_out}))
-    
+        requests.post("http://" + client_ip + ":5000/", data=json.dumps({'gesture_id': class_out}))
+
     return prev_data

@@ -4,3 +4,4 @@ WORKDIR /app
 
 COPY ./src/ /app
 
+RUN pip3 install requests
