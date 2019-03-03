@@ -8,6 +8,7 @@ Created on Sat Mar  2 21:17:04 2019
 
 import numpy as np
 import configparser as cp
+from classifier import predict
 
 config = cp.ConfigParser()
 config.read('config.ini')
@@ -21,7 +22,7 @@ no_response_time = int(config['DEFAULT']['no_response_time'])
 
 # Create dummy matrix (512x8)
 rand_array = np.random.rand(sampling_rate, channels)
-
+fitted_model = np.load('../fitted_model/fitted_model.npy')
 
 
 
@@ -44,13 +45,12 @@ def outer_classify(in_data, prev_data, sig_noMean):
 
 
     # Classify
-    # ... 
-    # ... 
-    # ... 
-        # classification output... 
+        class_out = int(predict.predict(fitted_model, in_data)) + 1
+
+        # classification output...
         # Make random output  !!! !!! !!! 
-        class_out = np.random.randint(0,6)
-    
+        # class_out = np.random.randint(0,6)
+
     # if ouput is a class
         if(class_out > 0):
             # call frontend for output...

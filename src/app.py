@@ -3,6 +3,7 @@ import numpy as np
 import requests
 import json
 from dummy_classify import outer_classify
+from classifier import predict
 
 
 config = cp.ConfigParser()
@@ -23,6 +24,8 @@ def app(samples, prev_data):
     This function will be executed on each recieved buffer of data.
     The analysis of the signal should, be handled through here.
     '''
+
+    samples = samples[:, [0,1,3,4,6,7,9,10]]
 
     sig[buffer_length:] = sig[:-buffer_length]
     sig[-buffer_length:] = samples[:]
