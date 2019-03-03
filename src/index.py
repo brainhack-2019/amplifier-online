@@ -19,11 +19,13 @@ amp.start_sampling()
 gains = np.array(amp.current_description.channel_gains)
 offsets = np.array(amp.current_description.channel_offsets)
 
+prev_data = 0
+
 def samples_to_microvolts(samples):
     return samples * gains + offsets
     
 while True:
     packet = amp.get_samples(int(config['DEFAULT']['buffer_length']))
     samples = samples_to_microvolts(packet.samples)
-    app(samples)
+    prev_data = app(samples, prev_data)
 
