@@ -24,7 +24,7 @@ no_response_time = int(config['DEFAULT']['no_response_time'])
 rand_array = np.random.rand(sampling_rate, channels)
 fitted_model = np.load('../fitted_model/fitted_model.npy')
 
-
+fitted_model[0] = np.array(fitted_model[0])
 
 def outer_classify(in_data, prev_data, sig_noMean):
 
@@ -33,8 +33,9 @@ def outer_classify(in_data, prev_data, sig_noMean):
         # decrement prev_data
         prev_data -= 1
         class_out = 0
-    
+
     else:
+        print('can classify')
         # Take in data 
         in_data
 
@@ -43,6 +44,7 @@ def outer_classify(in_data, prev_data, sig_noMean):
     # ... 
     # ...
 
+        fitted_model[1] = 0.9
 
     # Classify
         class_out = int(predict.predict(fitted_model, sig_noMean)) + 1
@@ -52,7 +54,7 @@ def outer_classify(in_data, prev_data, sig_noMean):
         # class_out = np.random.randint(0,6)
 
     # if ouput is a class
-        if(class_out > 0):
+        if(class_out > 0 and class_out != 3):
             # call frontend for output...
 
             # set prev_data to 20, so next 20 in_data are not checked

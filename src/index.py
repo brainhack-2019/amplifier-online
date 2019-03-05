@@ -1,7 +1,7 @@
 import numpy as np
 import configparser as cp
 
-from obci_cpp_amplifiers.amplifiers import DummyCppAmplifier
+from obci_cpp_amplifiers.amplifiers import TmsiCppAmplifier
 
 from app import app
 
@@ -9,8 +9,8 @@ config = cp.ConfigParser()
 config.read('config.ini')
 
 
-amps = DummyCppAmplifier.get_available_amplifiers()
-amp = DummyCppAmplifier(amps[0])
+amps = TmsiCppAmplifier.get_available_amplifiers()
+amp = TmsiCppAmplifier(amps[0])
 
 amp.sampling_rate = int(config['DEFAULT']['sampling_rate'])
 

@@ -4,6 +4,7 @@ import requests
 import json
 from dummy_classify import outer_classify
 from classifier import predict
+import matplotlib.pyplot as plt
 
 
 config = cp.ConfigParser()
@@ -25,23 +26,29 @@ def app(samples, prev_data):
     The analysis of the signal should, be handled through here.
     '''
 
+    global sig
+
     samples = samples[:, [0,1,3,4,6,7,9,10]]
 
-    sig[buffer_length:] = sig[:-buffer_length]
+    sig[:-buffer_length] = sig[buffer_length:]
     sig[-buffer_length:] = samples[:]
 
-
-    ###
-    sig_noMean = sig[:]
-
-    for i in range(channels):
-        mean_chan = sig[:,i].mean()
-        sig_noMean[:,i] -= mean_chan
+    even = np.array([0,2,4,6])
+    odd = np.array([1,3,5,7])
+    _sig = sig[:,odd] - sig[:,even]
 
 
     ###
+    sig_noMean = _sig[:]
 
-    prev_data, class_out = outer_classify(sig, prev_data, sig_noMean)
+    for i in range(4):
+        mean_chan = _sig[:,i].mean()
+        sig_noMean[:,i] = sig_noMean[:,i] - mean_chan
+
+
+    ###
+    prev_data, class_out = outer_classify(_sig, prev_data, sig_noMean)
+    print(class_out)
     if class_out != 0:
         requests.post("http://" + client_ip + ":5000/", data=json.dumps({'gesture_id': class_out}))
 
